@@ -13,7 +13,6 @@ public class Main
     {
         Tabungan A = new Tabungan();
         Tabungan B = new Tabungan();
-        
         A.setPemilik("A");
         A.penyetoran(300);
         B.setPemilik("B");
@@ -28,21 +27,5 @@ public class Main
         A.tampilkan();
         B.tampilkan();
 
-        Tabungan A = new Tabungan();
-        Tabungan B = new Tabungan();
-        Tabungan C = new Tabungan();
-
-        A.penyetoran(1200);
-        B.penyetoran(3000);
-        C.penyetoran(1500);
-
-        A.transfer(200,B);
-        B.transfer(2400,C);
-        C.transfer(1100,A);
-
-        B.transfer(1000,C);
-        C.transfer(-2000,A);
-
-        A.transfer(2000,A);
     }
 }
