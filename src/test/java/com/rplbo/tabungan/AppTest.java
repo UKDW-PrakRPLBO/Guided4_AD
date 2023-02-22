@@ -1,7 +1,6 @@
 package com.rplbo.tabungan;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,7 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Unit test for simple App.
@@ -20,11 +19,32 @@ public class AppTest
     /**
      * Rigorous Test :-)
      */
-    static Tabungan A = new Tabungan();
-    static Tabungan B = new Tabungan();
+	 
+	 @BeforeAll
+    public static void init() {
+		System.out.println("Awal");
+       
+    }
+
+    @AfterAll
+    public static void destory(){
+        System.out.println("AKHIRRR");
+       
+    }
+    @BeforeEach
+    public void setUp() {
+
+    }
+
+    @AfterEach
+    public void tearDown() {
+
+    }
+
     @ParameterizedTest
     @MethodSource("inputTabunganA")
     public void buatTabunganA(int saldo,String nama){
+        Tabungan A = new Tabungan();
         A.penyetoran(saldo);
         A.setPemilik(nama);
         assertEquals( 300,A.getSaldo() );
@@ -40,6 +60,7 @@ public class AppTest
     @ParameterizedTest
     @MethodSource("inputTabunganB")
     public void buatTabunganB(int saldo, String nama){
+        Tabungan B = new Tabungan();
         B.penyetoran(saldo);
         B.setPemilik(nama);
         assertEquals( 1200, B.getSaldo() );
@@ -54,27 +75,33 @@ public class AppTest
 
     @Test
     public void saldoTabunganA(){
-        A.penyetoran(300);
+        Tabungan A = new Tabungan();
+         A.penyetoran(300);
         assertEquals(300,A.getSaldo());
     }
 
     @Test
     public void saldoTabunganB(){
+         Tabungan B = new Tabungan();
         B.penyetoran(1200);
         assertEquals(1200,B.getSaldo());
     }
 
     @Test
     public void lakukanMacem2A(){
+        Tabungan A = new Tabungan();
+        A.penyetoran(300);
         A.penarikan(150);
-        A.penyetoran(-1000);
+        A.penyetoran(-200);
         assertEquals(150,A.getSaldo());
     }
 
     @Test
     public void lakukanMacem2B(){
+        Tabungan B = new Tabungan();
+        B.penyetoran(1200);
         B.penyetoran(300);
-        B.penarikan(-500);
+        B.penarikan(-1000);
         System.out.println(B.getSaldo());
         assertEquals(1500,B.getSaldo());
     }
